@@ -11,7 +11,7 @@ public class ImovelService {
     @Autowired
     private ImovelRepository imovelRepository;
 
-    public Imovel save(Integer id, Imovel imovel) {
+    public Imovel save(Imovel imovel) {
         imovel.setId(null);
         return imovelRepository.save(imovel);
 

@@ -1,25 +1,24 @@
-package fucturaJr.gerenciador_aluguel.models;
+package fucturaJr.gerenciador_aluguel.dtos;
 
-import jakarta.persistence.*;
-import org.springframework.aot.generate.GeneratedTypeReference;
+import fucturaJr.gerenciador_aluguel.models.Imovel;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@Entity
-@Table
-public class Imovel {
+public class ImovelDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Autowired
+    private ModelMapper modelMapper;
+
     private Integer id;
     private String descricao;   //--------------->  obrigatório
     private String endereco;    //--------------->  não é obrigatório
     private double valorAluguel;
     private boolean aluguelPago;
 
-    public Imovel() {
-    }
+    public ImovelDTO() {}
 
-    public Imovel(Integer id, String descricao, String endereco,
-                  double valorAluguel, boolean aluguelPago) {
+    public ImovelDTO(Integer id, String descricao, String endereco,
+                     double valorAluguel, boolean aluguelPago) {
         this.id = id;
         this.descricao = descricao;
         this.endereco = endereco;
@@ -27,10 +26,17 @@ public class Imovel {
         this.aluguelPago = aluguelPago;
     }
 
+    public ImovelDTO(Imovel imovel) {
+        this.id = imovel.getId();
+        this.descricao = imovel.getDescricao();
+        this.endereco = imovel.getEndereco();
+        this.valorAluguel = imovel.getValorAluguel();
+        this.aluguelPago = imovel.isAluguelPago();
+    }
+
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -38,7 +44,6 @@ public class Imovel {
     public String getDescricao() {
         return descricao;
     }
-
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
@@ -46,7 +51,6 @@ public class Imovel {
     public String getEndereco() {
         return endereco;
     }
-
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
@@ -54,7 +58,6 @@ public class Imovel {
     public double getValorAluguel() {
         return valorAluguel;
     }
-
     public void setValorAluguel(double valorAluguel) {
         this.valorAluguel = valorAluguel;
     }
@@ -62,7 +65,6 @@ public class Imovel {
     public boolean isAluguelPago() {
         return aluguelPago;
     }
-
     public void setAluguelPago(boolean aluguelPago) {
         this.aluguelPago = aluguelPago;
     }

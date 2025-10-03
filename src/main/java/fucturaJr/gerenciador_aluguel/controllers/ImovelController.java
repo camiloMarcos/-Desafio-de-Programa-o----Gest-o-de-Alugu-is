@@ -1,17 +1,18 @@
 package fucturaJr.gerenciador_aluguel.controllers;
 
+import fucturaJr.gerenciador_aluguel.dtos.ImovelDTO;
 import fucturaJr.gerenciador_aluguel.models.Imovel;
 import fucturaJr.gerenciador_aluguel.services.ImovelService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@Controller
+@RestController
 @RequestMapping("/imoveis")
 public class ImovelController {
 
@@ -21,10 +22,10 @@ public class ImovelController {
     private ModelMapper modelMapper;
 
 
-    @PostMapping("/save")
-    public Imovel save(@RequestParam Integer id, @RequestBody Imovel imovel) {
-        Imovel novoImovel = imovelService.save(id, imovel);
-        return novoImovel;
+    @PostMapping
+    public ResponseEntity <ImovelDTO> save(@RequestBody ImovelDTO imovelDTO) {
+        Imovel novoImovel = imovelService.save(modelMapper.map(imovelDTO, Imovel.class));
+        return ResponseEntity.ok().body(modelMapper.map(novoImovel, ImovelDTO.class));
     }
 
 }
