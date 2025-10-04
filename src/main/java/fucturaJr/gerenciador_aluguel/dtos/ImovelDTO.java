@@ -12,8 +12,7 @@ public class ImovelDTO {
     private Integer id;
     private String descricao;   //--------------->  obrigatório
     private String endereco;    //--------------->  não é obrigatório
-    private double valorAluguel;
-    private boolean aluguelPago;
+
 
     public ImovelDTO() {}
 
@@ -22,16 +21,12 @@ public class ImovelDTO {
         this.id = id;
         this.descricao = descricao;
         this.endereco = endereco;
-        this.valorAluguel = valorAluguel;
-        this.aluguelPago = aluguelPago;
     }
 
     public ImovelDTO(Imovel imovel) {
         this.id = imovel.getId();
         this.descricao = imovel.getDescricao();
         this.endereco = imovel.getEndereco();
-        this.valorAluguel = imovel.getValorAluguel();
-        this.aluguelPago = imovel.isAluguelPago();
     }
 
     public Integer getId() {
@@ -55,17 +50,4 @@ public class ImovelDTO {
         this.endereco = endereco;
     }
 
-    public double getValorAluguel() {
-        return valorAluguel;
-    }
-    public void setValorAluguel(double valorAluguel) {
-        this.valorAluguel = valorAluguel;
-    }
-
-    public boolean isAluguelPago() {
-        return aluguelPago;
-    }
-    public void setAluguelPago(boolean aluguelPago) {
-        this.aluguelPago = aluguelPago;
-    }
 }

@@ -8,6 +8,7 @@ public class InquilinoDTO {
 
     @Autowired
     private ModelMapper modelMapper;
+
     private Integer id;
     private String nome;    //---------------> OBRIGATÓRIO
     private String email;   //--------------->  NAO OBRIGATÓRIO
